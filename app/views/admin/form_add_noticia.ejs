@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>Portal de notícias</title>
+		<!-- JQuery -->
+		<script src="../js/jquery.js"></script>
+		<!-- bootstrap - link cdn -->
+		<link rel="stylesheet" href="../libs/bootstrap/index.css">
+		<!-- incluindo css -->
+		<link href="../css/style.css" rel="stylesheet">
+		<!-- favicon -->
+		<link rel="shortcut icon" href="../images/favicon.ico" />
+		<!-- Fontawesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
+	</head>
+	<body>
+		<nav class="navbar">
+			<div class="container">
+				<div>
+					<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon">
+							<i class="fas fa-bars"></i>
+						</span>
+					</button>
+
+					<a class="navbar-brand mr-auto" href="#">
+						<img src="../images/logo.png" />
+					</a>
+				</div>
+
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/">HOME</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+	    <div class="container">
+			<% if(erros){ %>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="alert alert-danger">
+							<strong>Atenção!</strong>
+							<ul>
+								<% erros.forEach(erro => {%>
+									<li><%= erro.msg %></li>
+								<% })%>
+							</ul>
+						</div>
+					</div>
+				</div>
+			<% } %>
+	    	<div class="row">
+	    		<div class="col-md-12">
+	    			<form action="/noticias/salvar" method="POST">
+						<div class="form-group">
+							<label for="titulo">Título:</label>
+							<input type="text" class="form-control" value="<%= noticia.not_titulo%>" id="titulo" name="not_titulo">
+						</div>
+
+						<div class="form-group">
+							<label for="resumo">Resumo:</label>
+							<input type="text" class="form-control" value="<%= noticia.not_resumo%>" id="resumo" name="not_resumo">
+						</div>
+						
+						<div class="form-group">
+							<label for="autor">Autor:</label>
+							<input type="text" class="form-control" value="<%= noticia.not_autor%>" id="autor" name="not_autor">
+						</div>
+
+						<div class="form-group">
+							<label for="data_noticia">Data:</label>
+							<input type="date" class="form-control" value="<%= noticia.not_data_criacao%>" id="data_noticia" name="not_data_criacao">
+						</div>
+
+						<div class="form-group">
+							<label for="noticia">Notícia:</label>
+							<textarea class="form-control" id="noticia" name="not_corpo"><%= noticia.not_corpo%></textarea>
+						</div>
+
+						<button type="submit" class="btn btn-primary">Cadastrar</button>
+					</form>
+		    	</div>
+	    	</div>
+	    </div>
+	
+		<script src="../libs/bootstrap/index.js"></script>
+	</body>
+</html>

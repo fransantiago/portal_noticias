@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>Portal de notícias</title>
+		<!-- JQuery -->
+		<script src="js/jquery.js"></script>
+		<!-- bootstrap - link cdn -->
+		<link rel="stylesheet" href="libs/bootstrap/index.css">
+		<!-- incluindo css -->
+		<link href="css/style.css" rel="stylesheet">
+		<!-- favicon -->
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<!-- Fontawesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
+	</head>
+
+	<body>
+		<nav class="navbar">
+			<div class="container">
+				<div>
+					<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon">
+							<i class="fas fa-bars"></i>
+						</span>
+					</button>
+
+					<a class="navbar-brand mr-auto" href="#">
+						<img src="images/logo.png" />
+					</a>
+				</div>
+
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/">HOME</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+	    <div class="container">
+	    	<div class="row">
+	    		<div class="col-md-8">
+	    			<div class="noticia_wrapper">
+		    			<span class="noticia_autor">Por <%= noticias[0].not_autor %></span>
+		    			<a href="noticia?not_id=<%=noticias[0].not_id%>" class="noticia_titulo"><%= noticias[0].not_titulo %></a>
+		    			<span class="noticia_data"><%= noticias[0].not_data_criacao %></span>
+		    			<br />
+		    			<p class="noticia_resumo"><%= noticias[0].not_resumo %></p>
+		    		</div>
+		    	</div>
+
+	    		<div class="col-md-4">
+	    			<div class="noticia_wrapper">
+		    			<span class="noticia_autor">Por <%= noticias[1].not_autor %></span>
+		    			<a href="noticia?not_id=<%=noticias[1].not_id%>" class="noticia_titulo"><%= noticias[1].not_titulo %></a>
+		    			<span class="noticia_data"><%= noticias[1].not_data_criacao %></span>
+		    			<br />
+		    			<p class="noticia_resumo"><%= noticias[1].not_resumo %></p>
+		    		</div>
+		    	</div>
+	    	</div>
+
+	    	<div class="row">
+				<% noticias.slice(2).forEach(noticia => { %>
+					<div class="col-md-4">
+						<div class="noticia_wrapper">
+							<span class="noticia_autor">Por <%= noticia.not_autor %></span>
+							<a href="noticia?not_id=<%=noticia.not_id%>" class="noticia_titulo"><%= noticia.not_titulo %></a>
+							<span class="noticia_data"><%= noticia.not_data_criacao %></span>
+							<br />
+							<p class="noticia_resumo"><%= noticia.not_resumo %></p>
+						</div>
+					</div>
+				<%});%>
+	    	</div>
+
+	    	<div class="row ver_mais">
+	    		<button type="button" class="btn btn-default"><a href="/noticias">Ver todas as notícias</a></button>
+	    	</div>
+	    </div>
+		<script src="libs/bootstrap/index.js"></script>
+	</body>
+</html>
